@@ -1,9 +1,10 @@
+#[eclipse ignore files]
+#eclipse-root
 .metadata/*
 RemoteSystemsTempFiles/*
-com.qlc.test.test-0.0.1-SNAPSHOT/.classpath
-com.qlc.test.test-0.0.1-SNAPSHOT/.gitignore
-com.qlc.test.test-0.0.1-SNAPSHOT/.project
-com.qlc.test.test-0.0.1-SNAPSHOT/.settings/org.eclipse.core.resources.prefs
-com.qlc.test.test-0.0.1-SNAPSHOT/.settings/org.eclipse.jdt.core.prefs
-com.qlc.test.test-0.0.1-SNAPSHOT/.settings/org.eclipse.m2e.core.prefs
-com.qlc.test.test-0.0.1-SNAPSHOT/.settings/*
+
+#eclipse-project
+.classpath
+*/.gitignore
+.project
+*/.settings/*

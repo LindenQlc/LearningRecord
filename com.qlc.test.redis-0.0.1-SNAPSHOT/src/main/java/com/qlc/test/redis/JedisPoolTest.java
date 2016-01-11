@@ -2,12 +2,11 @@ package com.qlc.test.redis;
 
 import java.util.ResourceBundle;
 
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 public class JedisPoolTest {
-	private static JedisPool pool = null;
+	public static JedisPool pool = null;
 	static{
 		ResourceBundle bundle = ResourceBundle.getBundle("redis");
 		if(bundle == null){
@@ -22,11 +21,5 @@ public class JedisPoolTest {
 		config.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
 		
 		pool = new JedisPool(config, bundle.getString("redis.ip"), Integer.valueOf(bundle.getString("redis.port")));
-	}
-	
-	public static void main(String[] args) {
-		Jedis jedis = pool.getResource();
-		System.out.println(jedis.ping());
-		pool.returnResource(jedis);
 	}
 }

@@ -3,8 +3,8 @@ package com.qlc.test.redis;
 import java.util.Set;
 
 import org.junit.Test;
-
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.ShardedJedis;
 
 
 public class TestJedis {
@@ -31,7 +31,25 @@ public class TestJedis {
 		}
 		jedis.close();
 	}
-	
+	/**
+	 * redisPool
+	 */
+	@Test
+	public void testRedisPool(){
+		Jedis jedis = JedisPoolTest.pool.getResource();
+		System.out.println(jedis.ping());
+		JedisPoolTest.pool.returnResource(jedis);
+	}
+	/**
+	 * JedisSharedInfo
+	 */
+	@Test
+	public void testJedisSharedInfo(){
+		ShardedJedis jedis = SharedJedisPoolTest.pool.getResource();
+		jedis.set("str", "SharedJedisPoolTest!");
+		System.out.println(jedis.get("str"));
+		SharedJedisPoolTest.pool.returnResource(jedis);
+	}
 	/**
 	 * integrate with spring
 	 */

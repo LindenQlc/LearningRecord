@@ -1,12 +1,15 @@
 package com.qlc.test.redis;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.JedisShardInfo;
+import redis.clients.jedis.ShardedJedisPool;
 
-public class JedisPoolTest {
-	public static JedisPool pool = null;
+public class SharedJedisPoolTest {
+	public static ShardedJedisPool pool = null;
 	static{
 		ResourceBundle bundle = ResourceBundle.getBundle("redis");
 		if(bundle == null){
@@ -20,6 +23,12 @@ public class JedisPoolTest {
 		config.setTestOnBorrow(Boolean.valueOf(bundle.getString("redis.pool.testOnBorrow")));
 		config.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
 		
-		pool = new JedisPool(config, bundle.getString("redis1.ip"), Integer.valueOf(bundle.getString("redis.port")));
+		JedisShardInfo jedisShardInfo1 = new JedisShardInfo(bundle.getString("redis1.ip"), Integer.valueOf(bundle.getString("redis1.port")));
+		//JedisShardInfo jedisShardInfo2 = new JedisShardInfo(bundle.getString("redis2.ip"), Integer.valueOf(bundle.getString("redis2.port")));
+		List<JedisShardInfo> list = new LinkedList<JedisShardInfo>();
+		//list.add(jedisShardInfo2);
+		list.add(jedisShardInfo1);
+		pool = new ShardedJedisPool(config, list);
 	}
+	
 }

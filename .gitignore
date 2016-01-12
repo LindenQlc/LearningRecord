@@ -1,6 +1,7 @@
 #[eclipse ignore files]
 #eclipse-root
 .metadata/*
+.recommenders/*
 RemoteSystemsTempFiles/*
 
 #eclipse-project

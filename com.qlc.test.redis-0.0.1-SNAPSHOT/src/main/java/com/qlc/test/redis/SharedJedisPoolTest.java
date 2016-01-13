@@ -24,9 +24,9 @@ public class SharedJedisPoolTest {
 		config.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
 		
 		JedisShardInfo jedisShardInfo1 = new JedisShardInfo(bundle.getString("redis1.ip"), Integer.valueOf(bundle.getString("redis1.port")));
-		//JedisShardInfo jedisShardInfo2 = new JedisShardInfo(bundle.getString("redis2.ip"), Integer.valueOf(bundle.getString("redis2.port")));
+		JedisShardInfo jedisShardInfo2 = new JedisShardInfo(bundle.getString("redis2.ip"), Integer.valueOf(bundle.getString("redis2.port")));
 		List<JedisShardInfo> list = new LinkedList<JedisShardInfo>();
-		//list.add(jedisShardInfo2);
+		list.add(jedisShardInfo2);
 		list.add(jedisShardInfo1);
 		pool = new ShardedJedisPool(config, list);
 	}

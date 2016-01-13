@@ -46,8 +46,7 @@ public class TestJedis {
 	@Test
 	public void testJedisSharedInfo(){
 		ShardedJedis jedis = SharedJedisPoolTest.pool.getResource();
-		jedis.set("str", "SharedJedisPoolTest!");
-		System.out.println(jedis.get("str"));
+		jedis.set("str45", "SharedJedisPoolTest!");
 		SharedJedisPoolTest.pool.returnResource(jedis);
 	}
 	/**

@@ -3,9 +3,16 @@
 .metadata/*
 .recommenders/*
 RemoteSystemsTempFiles/*
+Servers/*
 
 #eclipse-project
 .classpath
 */.gitignore
 .project
 */.settings/*
+/Servers/
+
+
+.springBeans
+.springWebflow
+

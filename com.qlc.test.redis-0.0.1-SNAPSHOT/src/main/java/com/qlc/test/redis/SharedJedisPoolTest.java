@@ -11,15 +11,15 @@ import redis.clients.jedis.ShardedJedisPool;
 public class SharedJedisPoolTest {
 	public static ShardedJedisPool pool = null;
 	static{
-		ResourceBundle bundle = ResourceBundle.getBundle("redis");
+		ResourceBundle bundle = ResourceBundle.getBundle("conf.redis");
 		if(bundle == null){
 			throw new IllegalArgumentException("[redis.properties] is not found");
 		}
 		
 		JedisPoolConfig config = new JedisPoolConfig();
-		config.setMaxTotal(Integer.valueOf(bundle.getString("redis.pool.maxActive")));
+		config.setMaxTotal(Integer.valueOf(bundle.getString("redis.pool.maxTotal")));
 		config.setMaxIdle(Integer.valueOf(bundle.getString("redis.pool.maxIdle")));
-		config.setMaxWaitMillis(Long.valueOf(bundle.getString("redis.pool.maxWait")));
+		config.setMaxWaitMillis(Long.valueOf(bundle.getString("redis.pool.maxWaitMillis")));
 		config.setTestOnBorrow(Boolean.valueOf(bundle.getString("redis.pool.testOnBorrow")));
 		config.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
 		
